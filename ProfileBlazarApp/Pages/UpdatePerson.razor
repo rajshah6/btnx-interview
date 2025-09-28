@@ -1,0 +1,43 @@
+@page "/edit/{Id:int}"
+@inject ProfileBlazarApp.Services.PersonApiClient Api
+@using ProfileBlazarApp.Models
+@using System.ComponentModel.DataAnnotations
+
+<h3>Edit Person</h3>
+
+@if (model is null)
+{
+    <p>Loading…</p>
+}
+else
+{
+    <EditForm Model="@model" OnValidSubmit="SaveAsync">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+
+        <div>Id: <InputNumber @bind-Value="model.Id" Disabled="true" /></div>
+        <div>First Name: <InputText @bind-Value="model.FirstName" /></div>
+        <div>Last Name: <InputText @bind-Value="model.LastName" /></div>
+        <div>Email: <InputText @bind-Value="model.Email" /></div>
+        <div>Phone: <InputText @bind-Value="model.Phone" /></div>
+
+        <button type="submit">Update</button>
+    </EditForm>
+
+    @if (!string.IsNullOrWhiteSpace(message)) { <p>@message</p> }
+}
+
+@code {
+    [Parameter] public int Id { get; set; }
+    private Person? model;
+    private string? message;
+
+    protected override async Task OnInitializedAsync()
+        => model = await Api.GetAsync(Id);
+
+    private async Task SaveAsync()
+    {
+        await Api.UpdateAsync(model!);
+        message = "Updated.";
+    }
+}
