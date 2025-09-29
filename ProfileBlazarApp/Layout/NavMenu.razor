@@ -4,9 +4,13 @@
 
 
 <div class="top-row ps-3 navbar navbar-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="">BTNX Profile App</a>
-        <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
+    <div class="container-fluid d-flex align-items-center">
+        <div class="d-flex align-items-center gap-2">
+            <a class="navbar-brand" href="">BTNX Profile App</a>
+            <a href="https://www.btnx.com/" target="_blank" rel="noopener noreferrer"
+                class="btn btn-primary btn-sm">About BTNX</a>
+        </div>
+        <button title="Navigation menu" class="navbar-toggler ms-auto" @onclick="ToggleNavMenu">
             <span class="navbar-toggler-icon"></span>
         </button>
     </div>

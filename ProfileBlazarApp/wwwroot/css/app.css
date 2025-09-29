@@ -125,7 +125,12 @@ code {
 }
 
 .top-row {
-    background-color: #1a1a1a; /* Slightly lighter black for the top row */
+    background-color: #90EE90; /* Match button green */
+    color: #fff; /* Ensure readable text on green */
+}
+
+.top-row a:not(.btn) {
+    color: #fff; /* White links on green banner */
 }
 
 /* More specific selector for the sidebar */
