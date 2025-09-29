@@ -5,7 +5,7 @@ namespace ProfileWebApi.Services;
 public interface IProfileRepository
 {
     Task<Profile?> GetProfileAsync();
-    Task<Profile> UpdateProfileAsync(Profile profile);
+    Task<Profile> UpdateProfileAsync(Profile newProfile);
 }
 
 public class ProfileRepository : IProfileRepository
@@ -27,17 +27,16 @@ public class ProfileRepository : IProfileRepository
         return _profile;
     }
 
-    public async Task<Profile> UpdateProfileAsync(Profile updatedProfile)
+    public async Task<Profile> UpdateProfileAsync(Profile newProfile)
     {
         // Simulate async database operation with a small delay
         await Task.Delay(10);
 
         // Update the stored profile
-        _profile.Id = updatedProfile.Id;
-        _profile.FirstName = updatedProfile.FirstName;
-        _profile.LastName = updatedProfile.LastName;
-        _profile.Email = updatedProfile.Email;
-        _profile.PhoneNumber = updatedProfile.PhoneNumber;
+        _profile.FirstName = newProfile.FirstName;
+        _profile.LastName = newProfile.LastName;
+        _profile.Email = newProfile.Email;
+        _profile.PhoneNumber = newProfile.PhoneNumber;
 
         return _profile;
     }
