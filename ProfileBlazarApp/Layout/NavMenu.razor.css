@@ -81,3 +81,32 @@
         overflow-y: auto;
     }
 }
+
+
+    .navbar-dark {
+        background-color: #2ecc71 !important;
+    }
+
+    .nav-scrollable {
+        background-color: #27ae60 !important;
+    }
+
+    .nav-link {
+        color: white !important;
+        transition: all 0.3s ease;
+    }
+
+    .nav-link:hover {
+        background-color: #1abc9c !important;
+        color: white !important;
+        transform: translateX(5px);
+    }
+
+    .navbar-brand {
+        color: white !important;
+        font-weight: bold;
+    }
+
+    .oi {
+        color: white !important;
+    }
