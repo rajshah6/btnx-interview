@@ -3,21 +3,20 @@ using ProfileBlazarApp.Models;
 
 namespace ProfileBlazarApp.Services;
 
-public class ProfileAPIClient
+public class ProfileService
 {
     private readonly HttpClient _httpClient;
 
-    public ProfileAPIClient(HttpClient httpClient)
+    public ProfileService(HttpClient httpClient)
     {
         _httpClient = httpClient;
     }
 
-    public async Task<Person?> GetProfileAsync()
+    public async Task<Profile?> GetProfileAsync()
     {
         try
         {
-            // api/profile is the endpoint in the API (ProfileController.cs)
-            var profile = await _httpClient.GetFromJsonAsync<Person>("api/profile");
+            var profile = await _httpClient.GetFromJsonAsync<Profile>("api/profile");
             return profile;
         }
         catch (HttpRequestException e)
@@ -27,12 +26,11 @@ public class ProfileAPIClient
         }
     }
 
-    public async Task<bool> UpdateProfileAsync(Person profile)
+    public async Task<bool> UpdateProfileAsync(Profile profile)
     {
         try
         {
-            // api/profile is the endpoint in the API (ProfileController.cs)
-            var response = await _httpClient.PostAsJsonAsync("api/profile", profile); 
+            var response = await _httpClient.PostAsJsonAsync("api/profile", profile);
             response.EnsureSuccessStatusCode();
             return true;
         }
@@ -42,4 +40,4 @@ public class ProfileAPIClient
             return false;
         }
     }
-} 
+}

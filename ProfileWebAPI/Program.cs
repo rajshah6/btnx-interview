@@ -1,42 +1,59 @@
-using ProfileWebAPI.Models;
-using ProfileWebAPI.Services;
-
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllers();
+// Add services to the container.
+// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddSingleton<PersonStore>();
 
-// Change these to match the Blazor dev ports printed in its console
-const string BlazorHttps = "http://localhost:5185";
-const string BlazorHttp = "http://localhost:5185";
-
+// Add CORS policy to allow the Blazor client
 builder.Services.AddCors(options =>
 {
-    options.AddDefaultPolicy(policy =>
-        policy.WithOrigins(BlazorHttps, BlazorHttp)
-              .AllowAnyHeader()
-              .AllowAnyMethod());
+    options.AddPolicy("AllowBlazorClient",
+        builder =>
+        {
+            builder.WithOrigins("http://localhost:5043") // Replace with your Blazor client URL
+                   .AllowAnyHeader()
+                   .AllowAnyMethod();
+        });
 });
 
-var app = builder.Build();
-
-app.UseHttpsRedirection();
-app.UseCors();           // CORS middleware
-app.UseSwagger();
-app.UseSwaggerUI();
-
-// initialize the PersonStore with a sample person
-var seededStore = app.Services.GetRequiredService<PersonStore>();
-seededStore.Upsert(new Person
+// In-memory storage for profile (for simplicity)
+var profile = new ProfileWebApi.Models.Profile
 {
     Id = 1,
     FirstName = "John",
     LastName = "Doe",
     Email = "john.doe@example.com",
-    Phone = "1234567890"
+    PhoneNumber = "123-456-7890"
+};
+
+var app = builder.Build();
+
+// Configure the HTTP request pipeline.
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
+
+app.UseHttpsRedirection();
+
+// Use CORS policy
+app.UseCors("AllowBlazorClient");
+
+// Minimal API endpoints
+app.MapGet("/api/profile", () =>
+{
+    return Results.Ok(profile);
 });
 
-app.MapControllers();
+app.MapPost("/api/profile", (ProfileWebApi.Models.Profile updatedProfile) =>
+{
+    profile.FirstName = updatedProfile.FirstName;
+    profile.LastName = updatedProfile.LastName;
+    profile.Email = updatedProfile.Email;
+    profile.PhoneNumber = updatedProfile.PhoneNumber;
+    return Results.Ok(profile);
+});
+
 app.Run();

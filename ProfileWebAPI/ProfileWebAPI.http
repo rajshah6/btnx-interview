@@ -1,6 +1,7 @@
-@ProfileWebAPI_HostAddress = http://localhost:5253
+@ProfileWebApi_HostAddress = http://localhost:5283
 
-GET {{ProfileWebAPI_HostAddress}}/weatherforecast/
+GET {{ProfileWebApi_HostAddress}}/weatherforecast/
 Accept: application/json
 
 ###
+

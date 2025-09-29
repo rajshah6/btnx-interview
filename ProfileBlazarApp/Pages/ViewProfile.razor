@@ -1,7 +1,7 @@
 @page "/view-profile"
 @using ProfileBlazarApp.Models
 @using ProfileBlazarApp.Services
-@inject ProfileAPIClient ProfileAPIClient
+@inject ProfileService ProfileService
 
 <div class="container mt-4">
     <h3>Profile Details</h3>
@@ -28,7 +28,7 @@
                 </div>
                 <div class="row mb-2">
                     <div class="col-md-3"><strong>Phone Number:</strong></div>
-                    <div class="col-md-9">@_profile.Phone</div>
+                    <div class="col-md-9">@_profile.PhoneNumber</div>
                 </div>
             </div>
         </div>
@@ -40,10 +40,10 @@
 </div>
 
 @code {
-    private Person? _profile;
+    private Profile? _profile;
 
     protected override async Task OnInitializedAsync()
     {
-        _profile = await ProfileAPIClient.GetProfileAsync();
+        _profile = await ProfileService.GetProfileAsync();
     }
 }
