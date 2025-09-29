@@ -22,6 +22,4 @@ A small demo with Blazor WebAssembly client and ASP.NET Core Web API. You can vi
 
   - App URL: [http://localhost:5043](http://localhost:5043)
 
-Notes:
-
-- The client calls the API at `http://localhost:5283`, so start the API first.
+Note: The client calls the API at `http://localhost:5283`, so start the API first.
