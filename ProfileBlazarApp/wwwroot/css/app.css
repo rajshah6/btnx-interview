@@ -125,8 +125,8 @@ code {
 }
 
 .top-row {
-    background-color: #FF8C00; /* Match button orange */
-    color: #fff; /* White text on orange background */
+    background-color: #90EE90; /* Match button green */
+    color: #000; /* Black text on green background */
 }
 
 .top-row a:not(.btn) {
@@ -147,7 +147,7 @@ code {
 }
 
 .nav-link {
-    color: #FF8C00; /* Orange text for nav links */
+    color: #90EE90; /* Light green text for nav links */
     margin: 5px 0; /* Add some vertical margin */
     border: 1px solid #333; /* Subtle border */
     border-radius: 4px; /* Slightly rounded corners */
@@ -157,15 +157,15 @@ code {
 }
 
 .nav-link:hover {
-    background-color: #FF7700; /* Orange background on hover */
+    background-color: #333; /* Darker background on hover */
     color: #fff; /* White text on hover */
-    border-color: #E66600;
+    border-color: #555;
 }
 
 .nav-link.active {
-    background-color: #FF8C00 !important; /* Orange background for active link, using !important */
-    color: #fff !important; /* White text for active link for contrast */
-    border-color: #FF7700 !important; /* Darker orange border for active link */
+    background-color: #90EE90 !important; /* Light green background for active link, using !important */
+    color: #000 !important; /* Black text for active link for contrast */
+    border-color: #7CBA7C !important; /* Light green border for active link */
 }
 
 /* General page content improvements */
