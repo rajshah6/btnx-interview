@@ -192,6 +192,17 @@ code {
     border-color: #E66600; /* Darker orange border on hover */
 }
 
+.btn-success {
+    color: #000; /* Black text */
+    background-color: #90EE90; /* Light green background */
+    border-color: #7CBA7C; /* Slightly darker green border */
+}
+
+.btn-success:hover {
+    background-color: #7CBA7C; /* Darker green on hover */
+    border-color: #6A9C6A; /* Even darker border on hover */
+}
+
 /* Style for the logo */
 .app-logo {
     height: 50px; /* Adjust height as needed */
