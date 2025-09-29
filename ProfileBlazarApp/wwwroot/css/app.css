@@ -11,18 +11,18 @@ a, .btn-link {
 }
 
 .btn-primary {
-    color: #000; /* Black text */
-    background-color: #90EE90; /* Light green background */
-    border-color: #7CBA7C; /* Slightly darker green border */
+    color: #fff; /* White text */
+    background-color: #FF8C00; /* Orange background */
+    border-color: #FF7700; /* Slightly darker orange border */
 }
 
 .btn-primary:hover {
-    background-color: #7CBA7C; /* Darker green on hover */
-    border-color: #6A9C6A; /* Even darker border on hover */
+    background-color: #FF7700; /* Darker orange on hover */
+    border-color: #E66600; /* Even darker orange border on hover */
 }
 
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #90EE90; /* Adjust focus box shadow to light green */
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #FF8C00; /* Adjust focus box shadow to orange */
 }
 
 .content {
@@ -125,8 +125,8 @@ code {
 }
 
 .top-row {
-    background-color: #90EE90; /* Match button green */
-    color: #000; /* Black text on green background */
+    background-color: #FF8C00; /* Match button orange */
+    color: #fff; /* White text on orange background */
 }
 
 .top-row a:not(.btn) {
@@ -147,7 +147,7 @@ code {
 }
 
 .nav-link {
-    color: #90EE90; /* Light green text for nav links */
+    color: #FF8C00; /* Orange text for nav links */
     margin: 5px 0; /* Add some vertical margin */
     border: 1px solid #333; /* Subtle border */
     border-radius: 4px; /* Slightly rounded corners */
@@ -157,15 +157,15 @@ code {
 }
 
 .nav-link:hover {
-    background-color: #333; /* Darker background on hover */
+    background-color: #FF7700; /* Orange background on hover */
     color: #fff; /* White text on hover */
-    border-color: #555;
+    border-color: #E66600;
 }
 
 .nav-link.active {
-    background-color: #90EE90 !important; /* Light green background for active link, using !important */
-    color: #000 !important; /* Black text for active link for contrast */
-    border-color: #7CBA7C !important; /* Light green border for active link */
+    background-color: #FF8C00 !important; /* Orange background for active link, using !important */
+    color: #fff !important; /* White text for active link for contrast */
+    border-color: #FF7700 !important; /* Darker orange border for active link */
 }
 
 /* General page content improvements */
@@ -183,13 +183,13 @@ code {
 .btn-secondary {
     color: #000; /* Black text */
     background-color: #fff; /* White background */
-    border-color: #90EE90; /* Light green border */
+    border-color: #FF8C00; /* Orange border */
 }
 
 .btn-secondary:hover {
     color: #fff; /* White text on hover */
-    background-color: #7CBA7C; /* Slightly darker green background on hover */
-    border-color: #6A9C6A; /* Even darker green border on hover */
+    background-color: #FF7700; /* Orange background on hover */
+    border-color: #E66600; /* Darker orange border on hover */
 }
 
 /* Style for the logo */
