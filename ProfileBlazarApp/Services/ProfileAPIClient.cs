@@ -16,6 +16,7 @@ public class ProfileAPIClient
     {
         try
         {
+            // api/profile is the endpoint in the API (ProfileController.cs)
             var profile = await _httpClient.GetFromJsonAsync<Person>("api/profile");
             return profile;
         }
@@ -30,7 +31,8 @@ public class ProfileAPIClient
     {
         try
         {
-            var response = await _httpClient.PostAsJsonAsync("api/profile", profile);
+            // api/profile is the endpoint in the API (ProfileController.cs)
+            var response = await _httpClient.PostAsJsonAsync("api/profile", profile); 
             response.EnsureSuccessStatusCode();
             return true;
         }

@@ -10,7 +10,7 @@ builder.Services.AddSingleton<PersonStore>();
 
 // Change these to match the Blazor dev ports printed in its console
 const string BlazorHttps = "http://localhost:5185";
-const string BlazorHttp  = "http://localhost:5185";
+const string BlazorHttp = "http://localhost:5185";
 
 builder.Services.AddCors(options =>
 {
@@ -20,17 +20,23 @@ builder.Services.AddCors(options =>
               .AllowAnyMethod());
 });
 
-PersonStore personStore = new PersonStore();
-
-// sample person
-personStore.Upsert(new Person { Id = 1, FirstName = "John", LastName = "Doe", Email = "john.doe@example.com", Phone = "1234567890" });
-
 var app = builder.Build();
 
 app.UseHttpsRedirection();
 app.UseCors();           // CORS middleware
 app.UseSwagger();
 app.UseSwaggerUI();
+
+// initialize the PersonStore with a sample person
+var seededStore = app.Services.GetRequiredService<PersonStore>();
+seededStore.Upsert(new Person
+{
+    Id = 1,
+    FirstName = "John",
+    LastName = "Doe",
+    Email = "john.doe@example.com",
+    Phone = "1234567890"
+});
 
 app.MapControllers();
 app.Run();

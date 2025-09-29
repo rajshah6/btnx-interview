@@ -5,7 +5,7 @@
 
 <div class="container mt-4">
     <h3>Profile Details</h3>
-    
+
     @if (_profile == null)
     {
         <p>Loading profile...</p>
@@ -28,7 +28,7 @@
                 </div>
                 <div class="row mb-2">
                     <div class="col-md-3"><strong>Phone Number:</strong></div>
-                    <div class="col-md-9">@_profile.PhoneNumber</div>
+                    <div class="col-md-9">@_profile.Phone</div>
                 </div>
             </div>
         </div>
@@ -40,10 +40,10 @@
 </div>
 
 @code {
-    private Profile? _profile;
+    private Person? _profile;
 
     protected override async Task OnInitializedAsync()
     {
-        _profile = await PersonAPIClient.GetProfileAsync();
+        _profile = await ProfileAPIClient.GetProfileAsync();
     }
-} 
+}
