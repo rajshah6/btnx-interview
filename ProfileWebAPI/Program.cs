@@ -1,7 +1,12 @@
+using ProfileWebApi.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+// Register ProfileRepository as a singleton to simulate database persistence
+builder.Services.AddSingleton<IProfileRepository, ProfileRepository>();
 
 // Add CORS policy to allow the Blazor client
 builder.Services.AddCors(options =>
@@ -9,21 +14,11 @@ builder.Services.AddCors(options =>
     options.AddPolicy("AllowBlazorClient",
         builder =>
         {
-            builder.WithOrigins("http://localhost:5043") 
+            builder.WithOrigins("http://localhost:5043")
                    .AllowAnyHeader()
                    .AllowAnyMethod();
         });
 });
-
-// In-memory storage for profile (for simplicity)
-var profile = new ProfileWebApi.Models.Profile
-{
-    Id = 1,
-    FirstName = "John",
-    LastName = "Doe",
-    Email = "john.doe@example.com",
-    PhoneNumber = "123-456-7890"
-};
 
 var app = builder.Build();
 
@@ -39,19 +34,16 @@ app.UseHttpsRedirection();
 // Use CORS policy
 app.UseCors("AllowBlazorClient");
 
-// Minimal API endpoints
-app.MapGet("/api/profile", () =>
+// API endpoints
+app.MapGet("/api/profile", async (IProfileRepository repository) =>
 {
-    return Results.Ok(profile);
+    var profile = await repository.GetProfileAsync();
+    return profile != null ? Results.Ok(profile) : Results.NotFound();
 });
 
-app.MapPost("/api/profile", (ProfileWebApi.Models.Profile updatedProfile) =>
+app.MapPost("/api/profile", async (ProfileWebApi.Models.Profile updatedProfile, IProfileRepository repository) =>
 {
-    profile.Id = updatedProfile.Id;
-    profile.FirstName = updatedProfile.FirstName;
-    profile.LastName = updatedProfile.LastName;
-    profile.Email = updatedProfile.Email;
-    profile.PhoneNumber = updatedProfile.PhoneNumber;
+    var profile = await repository.UpdateProfileAsync(updatedProfile);
     return Results.Ok(profile);
 });
 
