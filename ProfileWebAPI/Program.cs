@@ -20,6 +20,11 @@ builder.Services.AddCors(options =>
               .AllowAnyMethod());
 });
 
+PersonStore personStore = new PersonStore();
+
+// sample person
+personStore.Upsert(new Person { Id = 1, FirstName = "John", LastName = "Doe", Email = "john.doe@example.com", Phone = "1234567890" });
+
 var app = builder.Build();
 
 app.UseHttpsRedirection();
