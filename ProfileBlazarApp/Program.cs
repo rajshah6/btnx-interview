@@ -13,6 +13,6 @@ builder.Services.AddScoped(sp => new HttpClient
     BaseAddress = new Uri("https://localhost:5253/")
 });
 
-builder.Services.AddScoped<PersonApiClient>();
+builder.Services.AddScoped<ProfileAPIClient>();
 
 await builder.Build().RunAsync();
